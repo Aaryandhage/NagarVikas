@@ -205,7 +205,7 @@ class _IssueSelectionPageState extends State<IssueSelectionPage> {
   Widget buildIssueCard(
       BuildContext context, String text, String imagePath, Widget page) {
     return GestureDetector(
-      onTap: () => showProcessingDialog(context, page),
+      onTap: () => showGuidelinesDialog(context, page),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeInOut,
@@ -283,6 +283,48 @@ void showProcessingDialog(BuildContext context, Widget nextPage) {
     Navigator.pop(context); 
     Navigator.push(context, MaterialPageRoute(builder: (context) => nextPage));
   });
+}
+
+// Shows a terms and conditions dialog before navigating to the issue detail page
+void showGuidelinesDialog(BuildContext context, Widget nextPage) {
+  showDialog(
+    context: context,
+    barrierDismissible: false,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text('Guidelines Before Submission'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('To avoid spam or wrong entries, please ensure:'),
+            SizedBox(height: 10),
+            Text('• Upload a clear image of the issue.'),
+            Text('• Provide an accurate and clear location.'),
+            Text('• Describe the issue in detail.'),
+            Text('• Do not submit fake or duplicate complaints.'),
+            SizedBox(height: 16),
+            Text('By proceeding, you agree to these terms.'),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context); // Cancel
+            },
+            child: Text('Cancel'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pop(context); // Close dialog
+              showProcessingDialog(context, nextPage); // Continue to next page
+            },
+            child: Text('I Agree'),
+          ),
+        ],
+      );
+    },
+  );
 }
 
 // App Drawer for navigation and profile settings

@@ -50,7 +50,8 @@ void main() async {
         messagingSenderId: "847955234719",
         appId: "1:847955234719:web:ac2b6da7a3a0715adfb7aa",
         measurementId: "G-ZZMV642TW3",
-      ),
+        databaseURL: "https://nagarvikas-a1d4f-default-rtdb.firebaseio.com",
+      ), 
     );
   } else {
     await Firebase.initializeApp(); // This might fail if no default options
@@ -264,90 +265,94 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            // ✅ Top Circle Animation
-            Align(
-              alignment: Alignment.topLeft,
-              child: ZoomIn(
-                duration: const Duration(milliseconds: 1200),
-                child: Container(
-                  width: 120,
-                  height: 120,
-                  decoration: const BoxDecoration(
-                    color: Color.fromARGB(255, 133, 207, 239),
-                    shape: BoxShape.circle,
+        child: SingleChildScrollView(
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                // ✅ Top Circle Animation
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: ZoomIn(
+                    duration: const Duration(milliseconds: 1200),
+                    child: Container(
+                      width: 120,
+                      height: 120,
+                      decoration: const BoxDecoration(
+                        color: Color.fromARGB(255, 133, 207, 239),
+                        shape: BoxShape.circle,
+                      ),
+                    ),
                   ),
                 ),
-              ),
-            ),
-            const SizedBox(height: 30),
+                const SizedBox(height: 30),
 
-            // ✅ Main Image Animation
-            ZoomIn(
-              duration: const Duration(milliseconds: 1200),
-              child: Image.asset(
-                'assets/mobileprofile.png',
-                width: 300,
-                height: 300,
-                fit: BoxFit.contain,
-              ),
-            ),
-            const SizedBox(height: 20),
-
-            // ✅ Headline & Subtext
-            FadeInUp(
-              duration: const Duration(milliseconds: 1200),
-              child: Column(
-                children: [
-                  const Text(
-                    "Facing Civic Issues?",
-                    style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
+                // ✅ Main Image Animation
+                ZoomIn(
+                  duration: const Duration(milliseconds: 1200),
+                  child: Image.asset(
+                    'assets/mobileprofile.png',
+                    width: 300,
+                    height: 300,
+                    fit: BoxFit.contain,
                   ),
-                  const SizedBox(
-                      height: 10), // Space between heading and subtext
-                  const Text(
-                    "Register your complaint now and\nget it done in few time.",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black87,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 50),
+                ),
+                const SizedBox(height: 20),
 
-            // ✅ Get Started Button
-            FadeInUp( // Animation for button
-              duration: const Duration(milliseconds: 1600),
-              child: ElevatedButton(
-                onPressed: _isLoading ? null : _onGetStartedPressed,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromARGB(255, 8, 8, 8),
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 90, vertical: 15),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)),
-                ), // ✅ Button style
-                child: _isLoading 
-                    ? const CircularProgressIndicator(color: Colors.white)
-                    : const Text("Get Started",
+                // ✅ Headline & Subtext
+                FadeInUp(
+                  duration: const Duration(milliseconds: 1200),
+                  child: Column(
+                    children: [
+                      const Text(
+                        "Facing Civic Issues?",
                         style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.white)),
-              ),
+                          fontSize: 28,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                      ),
+                      const SizedBox(
+                          height: 10), // Space between heading and subtext
+                      const Text(
+                        "Register your complaint now and\nget it done in few time.",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black87,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 50),
+
+                // ✅ Get Started Button
+                FadeInUp( // Animation for button
+                  duration: const Duration(milliseconds: 1600),
+                  child: ElevatedButton(
+                    onPressed: _isLoading ? null : _onGetStartedPressed,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromARGB(255, 8, 8, 8),
+                      padding:
+                          const EdgeInsets.symmetric(horizontal: 90, vertical: 15),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                    ), // ✅ Button style
+                    child: _isLoading 
+                        ? const CircularProgressIndicator(color: Colors.white)
+                        : const Text("Get Started",
+                            style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.white)),
+                  ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );

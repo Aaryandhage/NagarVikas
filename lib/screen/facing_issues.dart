@@ -12,39 +12,42 @@ class FacingIssuesPage extends StatelessWidget {
       ),
       body: Padding(
         padding: EdgeInsets.all(20.0),
-        child: ListView(
-          children: [
-            _buildSectionTitle('Common Issues'),
-            _buildIssueTile(
-              'App not opening',
-              'If the app is not opening, try restarting your phone or reinstalling the app. Ensure you have a stable internet connection.',
-            ),
-            _buildIssueTile(
-              'Login issues',
-              'If you’re facing issues with logging in, make sure your internet connection is stable and you are using the correct login credentials. If you forgot your password, use the "Forgot Password" option.',
-            ),
-            _buildIssueTile(
-              'Error in submitting complaint',
-              'If the complaint submission fails, please check your internet connection and ensure all required fields are filled. Try restarting the app and submitting again.',
-            ),
-            SizedBox(height: 20),
-            _buildSectionTitle('Troubleshooting Steps'),
-            _buildStepTile(
-              'Step 1: Restart the app',
-              'Close the app completely and reopen it. This can resolve most of the temporary issues.',
-            ),
-            _buildStepTile(
-              'Step 2: Check your internet connection',
-              'Ensure you are connected to a stable internet connection (WiFi or mobile data) to avoid connectivity-related issues.',
-            ),
-            _buildStepTile(
-              'Step 3: Clear app cache',
-              'Sometimes clearing the app’s cache can solve performance issues. Go to your phone’s settings, find the app, and clear the cache.',
-            ),
-            SizedBox(height: 20),
-            _buildSectionTitle('Need Help?'),
-            _buildContactTile(),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _buildSectionTitle('Common Issues'),
+              _buildIssueTile(
+                'App not opening',
+                'If the app is not opening, try restarting your phone or reinstalling the app. Ensure you have a stable internet connection.',
+              ),
+              _buildIssueTile(
+                'Login issues',
+                "If you're facing issues with logging in, make sure your internet connection is stable and you are using the correct login credentials. If you forgot your password, use the 'Forgot Password' option.",
+              ),
+              _buildIssueTile(
+                'Error in submitting complaint',
+                'If the complaint submission fails, please check your internet connection and ensure all required fields are filled. Try restarting the app and submitting again.',
+              ),
+              SizedBox(height: 20),
+              _buildSectionTitle('Troubleshooting Steps'),
+              _buildStepTile(
+                'Step 1: Restart the app',
+                'Close the app completely and reopen it. This can resolve most of the temporary issues.',
+              ),
+              _buildStepTile(
+                'Step 2: Check your internet connection',
+                'Ensure you are connected to a stable internet connection (WiFi or mobile data) to avoid connectivity-related issues.',
+              ),
+              _buildStepTile(
+                'Step 3: Clear app cache',
+                "Sometimes clearing the app's cache can solve performance issues. Go to your phone's settings, find the app, and clear the cache.",
+              ),
+              SizedBox(height: 20),
+              _buildSectionTitle('Need Help?'),
+              _buildContactTile(),
+            ],
+          ),
         ),
       ),
     );
